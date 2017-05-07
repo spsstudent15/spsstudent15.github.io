@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+
+<html>
+
+	<p><b> New York City FY18 Projected Expenditures by Agency, in Thousands</b></p>
+ <head>
+        <title> Projected Expenditures by Agency, in Thousands</title>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<div id= "div1"> </div>
+<script>
+	
+	
+Plotly.d3.csv ("https://raw.githubusercontent.com/spsstudent15/2017-01-608/master/608-ProjectData/FY18-agency-budget-data%20-%20Sheet1.csv", function(err,rows)
+			{
+				function unpack(rows,key)
+				{
+					return rows.map(function(row)
+					{return row[key];});
+				}
+				
+					var data = [
+						  {
+							x: unpack(rows, 'Agency'),
+							y: unpack(rows,'FY18Expend'),
+							type: 'bar'
+						  }
+						];
+						
+					var layout = {
+							height: 500,
+							width: 500
+						}
+						
+						Plotly.newPlot('div1', data, layout);
+
+			});
+	</script>
+	
+</body>
+</html>
